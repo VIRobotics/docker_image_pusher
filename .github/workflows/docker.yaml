@@ -49,4 +49,5 @@ jobs:
           docker tag $image $new_image
           echo "docker push $new_image"
           docker push $new_image
+          docker system prune -a -f
         done < images.txt
