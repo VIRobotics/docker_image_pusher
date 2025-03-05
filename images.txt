@@ -5,4 +5,4 @@ atmoz/sftp:latest
 pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime
 ollama/ollama:latest
 gitea/gitea:1.23.3
-approachingai/ktransformers:latest-AVX2
+breakstring/gpt-sovits:latest
