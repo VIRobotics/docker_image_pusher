@@ -3,4 +3,4 @@ nginx:latest
 atmoz/sftp:latest
 ollama/ollama:latest
 gitea/gitea:1.23.3
-pytorch/pytorch:2.7.0-cuda12.8-cudnn9-devel
+pytorch/pytorch:2.7.1-cuda12.8-cudnn9-devel
