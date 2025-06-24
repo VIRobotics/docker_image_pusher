@@ -1,8 +1,8 @@
 FROM pytorch/pytorch:2.7.1-cuda11.8-cudnn9-devel
 # Downloads to user config dir
-ADD Arial.ttf Arial.Unicode.ttf /root/.config/Ultralytics/
+ADD https://ultralytics.com/assets/Arial.ttf https://ultralytics.com/assets/Arial.Unicode.ttf /root/.config/Ultralytics/
 ENV DEBIAN_FRONTEND noninteractive
-RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+#RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
 RUN apt update
 RUN TZ=Etc/UTC apt install -y tzdata
 RUN apt install --no-install-recommends -y gcc git zip unzip curl htop libgl1-mesa-glx libglib2.0-0 libpython3-dev gnupg wget aria2 p7zip-full nano
