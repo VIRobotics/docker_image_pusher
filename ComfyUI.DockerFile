@@ -30,6 +30,7 @@ ENV OMP_NUM_THREADS=12
 # Cleanup
 ENV DEBIAN_FRONTEND teletype
 RUN pip3 install --no-cache-dir comfy-cli
+RUN comfy --skip-prompt env
 # RUN comfy --install-completion
 RUN comfy install
 EXPOSE 8888
