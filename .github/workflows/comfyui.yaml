@@ -57,5 +57,5 @@ jobs:
     - name: Build and push image Aliyun
       run: |
         docker login -u $ALIYUN_REGISTRY_USER -p $ALIYUN_REGISTRY_PASSWORD $ALIYUN_REGISTRY
-        docker build -t $ALIYUN_REGISTRY/$ALIYUN_NAME_SPACE/comfyui:$VERSION -f pytorch_jpt.Dockerfile .
+        docker build -t $ALIYUN_REGISTRY/$ALIYUN_NAME_SPACE/comfyui:$VERSION -f ComfyUI.DockerFile .
         docker push $ALIYUN_REGISTRY/$ALIYUN_NAME_SPACE/comfyui:$VERSION
