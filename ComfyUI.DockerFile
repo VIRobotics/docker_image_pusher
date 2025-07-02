@@ -29,9 +29,8 @@ ENV OMP_NUM_THREADS=12
 
 # Cleanup
 ENV DEBIAN_FRONTEND teletype
-RUN pip3 install --no-cache-dir comfy-cli
-RUN comfy --skip-prompt env
-# RUN comfy --install-completion
-RUN comfy install
+RUN git clone git clone https://github.com/comfyanonymous/ComfyUI.git
+WORKDIR /usr/src/ComfyUI
+RUN pip install --no-cache-dir -r requirements.txt 
 EXPOSE 8888
-CMD comfy launch -- --listen 0.0.0.0 --port 8888
+CMD python main.py  --listen 0.0.0.0 --port 8888
