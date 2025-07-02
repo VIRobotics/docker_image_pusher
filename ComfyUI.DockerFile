@@ -29,7 +29,7 @@ ENV OMP_NUM_THREADS=12
 
 # Cleanup
 ENV DEBIAN_FRONTEND teletype
-RUN git clone git clone https://github.com/comfyanonymous/ComfyUI.git
+RUN  git clone https://github.com/comfyanonymous/ComfyUI.git
 WORKDIR /usr/src/ComfyUI
 RUN pip install --no-cache-dir -r requirements.txt 
 EXPOSE 8888
