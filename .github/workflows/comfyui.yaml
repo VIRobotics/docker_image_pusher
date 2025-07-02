@@ -9,6 +9,10 @@ env:
   ALIYUN_NAME_SPACE: "${{ secrets.ALIYUN_NAME_SPACE }}"
   ALIYUN_REGISTRY_USER: "${{ secrets.ALIYUN_REGISTRY_USER }}"
   ALIYUN_REGISTRY_PASSWORD: "${{ secrets.ALIYUN_REGISTRY_PASSWORD }}"
+  HWC_USER: "${{ secrets.HWC_USER }}"
+  HWC_PWD: "${{ secrets.HWC_PWD }}"
+  HWC_REG: "${{ secrets.HWC_REG }}"
+  HWC_SPC: hetong
   VERSION: 2.7.1-cu128
 
 jobs:
@@ -56,6 +60,6 @@ jobs:
 
     - name: Build and push image Aliyun
       run: |
-        docker login -u $ALIYUN_REGISTRY_USER -p $ALIYUN_REGISTRY_PASSWORD $ALIYUN_REGISTRY
-        docker build -t $ALIYUN_REGISTRY/$ALIYUN_NAME_SPACE/comfyui:$VERSION -f ComfyUI.DockerFile .
-        docker push $ALIYUN_REGISTRY/$ALIYUN_NAME_SPACE/comfyui:$VERSION
+        docker login -u $HWC_USER -p $HWC_PWD $HWC_REG
+        docker build -t $HWC_REG/$HWC_SPC/comfyui:$VERSION -f ComfyUI.DockerFile .
+        docker push $HWC_REG/$HWC_SPC/comfyui:$VERSION
