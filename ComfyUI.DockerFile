@@ -30,7 +30,9 @@ ENV OMP_NUM_THREADS=12
 # Cleanup
 ENV DEBIAN_FRONTEND teletype
 RUN  git clone https://github.com/comfyanonymous/ComfyUI.git
+VOLUME /usr/src/ComfyUI/models/
 WORKDIR /usr/src/ComfyUI
+RUN cd custom_nodes &&  git clone https://github.com/ltdrdata/ComfyUI-Manager comfyui-manager
 RUN pip install --no-cache-dir -r requirements.txt 
 EXPOSE 8888
-CMD python main.py  --listen 0.0.0.0 --port 8888
+CMD python main.py  --listen 0.0.0.0 --port 8888 
