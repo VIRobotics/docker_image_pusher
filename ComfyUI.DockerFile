@@ -38,6 +38,6 @@ RUN  pip install --no-cache-dir -r custom_nodes/comfyui-manager/requirements.txt
 RUN  pip install --no-cache-dir -r custom_nodes/comfyui-fluxtrainer/requirements.txt
 RUN  pip install --no-cache-dir -r custom_nodes/ComfyUI-KJNodes/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt 
-RUN pip install --no-cache-dir gitpython
+RUN pip install --no-cache-dir piexif dghs-imgutils[gpu]
 EXPOSE 8888
 CMD python main.py  --listen 0.0.0.0 --port 8888 
