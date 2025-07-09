@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 #RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
 RUN apt update
 RUN TZ=Etc/UTC apt install -y tzdata
-RUN apt install --no-install-recommends -y  git  libopencv-dev
+RUN apt install --no-install-recommends -y  git  libgl1-mesa-glx libglib2.0-0 build-essential
 # RUN alias python=python3
 
 # Security updates
