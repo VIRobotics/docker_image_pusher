@@ -30,7 +30,7 @@ ENV OMP_NUM_THREADS=12
 # Cleanup
 ENV DEBIAN_FRONTEND teletype
 RUN  git clone https://github.com/comfyanonymous/ComfyUI.git
-VOLUME /usr/src/ComfyUI/models/
+VOLUME /usr/src/ComfyUI/models/ /usr/src/output/ 
 WORKDIR /usr/src/ComfyUI
 RUN cd custom_nodes &&  git clone https://github.com/ltdrdata/ComfyUI-Manager comfyui-manager && git clone https://github.com/kijai/ComfyUI-FluxTrainer comfyui-fluxtrainer \
  && git clone  https://github.com/kijai/ComfyUI-KJNodes && git clone https://github.com/aria1th/ComfyUI-LogicUtils && git clone https://github.com/rgthree/rgthree-comfy.git
@@ -38,6 +38,6 @@ RUN  pip install --no-cache-dir -r custom_nodes/comfyui-manager/requirements.txt
 RUN  pip install --no-cache-dir -r custom_nodes/comfyui-fluxtrainer/requirements.txt
 RUN  pip install --no-cache-dir -r custom_nodes/ComfyUI-KJNodes/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt 
-RUN pip install --no-cache-dir piexif dghs-imgutils[gpu]
+RUN pip install --no-cache-dir piexif dghs-imgutils[gpu] pycryptodome
 EXPOSE 8888
 CMD python main.py  --listen 0.0.0.0 --port 8888 
