@@ -32,7 +32,10 @@ ENV DEBIAN_FRONTEND teletype
 RUN  git clone https://github.com/comfyanonymous/ComfyUI.git
 VOLUME /usr/src/ComfyUI/models/
 WORKDIR /usr/src/ComfyUI
-RUN cd custom_nodes &&  git clone https://github.com/ltdrdata/ComfyUI-Manager comfyui-manager
+RUN cd custom_nodes &&  git clone https://github.com/ltdrdata/ComfyUI-Manager comfyui-manager && git clone https://github.com/kijai/ComfyUI-FluxTrainer comfyui-fluxtrainer
+RUN  pip install --no-cache-dir -r custom_nodes/comfyui-manager/requirements.txt
+RUN  pip install --no-cache-dir -r custom_nodes/comfyui-fluxtrainer/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt 
+RUN pip install --no-cache-dir gitpython
 EXPOSE 8888
 CMD python main.py  --listen 0.0.0.0 --port 8888 
