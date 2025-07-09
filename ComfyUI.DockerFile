@@ -30,7 +30,7 @@ ENV OMP_NUM_THREADS=12
 # Cleanup
 ENV DEBIAN_FRONTEND teletype
 RUN  git clone https://github.com/comfyanonymous/ComfyUI.git
-VOLUME /usr/src/ComfyUI/models/ /usr/src/output/ 
+VOLUME ["/usr/src/ComfyUI/models/","/usr/src/output/"] 
 WORKDIR /usr/src/ComfyUI
 RUN cd custom_nodes &&  git clone https://github.com/ltdrdata/ComfyUI-Manager comfyui-manager && git clone https://github.com/kijai/ComfyUI-FluxTrainer comfyui-fluxtrainer \
  && git clone  https://github.com/kijai/ComfyUI-KJNodes && git clone https://github.com/aria1th/ComfyUI-LogicUtils && git clone https://github.com/rgthree/rgthree-comfy.git
