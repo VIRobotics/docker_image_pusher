@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 #RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
 RUN apt update
 RUN TZ=Etc/UTC apt install -y tzdata
-RUN apt install --no-install-recommends -y  git  libgl1-mesa-glx libglib2.0-0 build-essential python3-dev
+RUN apt install --no-install-recommends -y  git  libgl1-mesa-glx libglib2.0-0 build-essential python3-dev && apt clean
 # RUN alias python=python3
 
 # Security updates
@@ -32,9 +32,11 @@ ENV DEBIAN_FRONTEND teletype
 RUN  git clone https://github.com/comfyanonymous/ComfyUI.git
 VOLUME /usr/src/ComfyUI/models/
 WORKDIR /usr/src/ComfyUI
-RUN cd custom_nodes &&  git clone https://github.com/ltdrdata/ComfyUI-Manager comfyui-manager && git clone https://github.com/kijai/ComfyUI-FluxTrainer comfyui-fluxtrainer
+RUN cd custom_nodes &&  git clone https://github.com/ltdrdata/ComfyUI-Manager comfyui-manager && git clone https://github.com/kijai/ComfyUI-FluxTrainer comfyui-fluxtrainer \
+ && git clone  https://github.com/kijai/ComfyUI-KJNodes && git clone https://github.com/aria1th/ComfyUI-LogicUtils && git clone https://github.com/rgthree/rgthree-comfy.git
 RUN  pip install --no-cache-dir -r custom_nodes/comfyui-manager/requirements.txt
 RUN  pip install --no-cache-dir -r custom_nodes/comfyui-fluxtrainer/requirements.txt
+RUN  pip install --no-cache-dir -r custom_nodes/ComfyUI-KJNodes/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt 
 RUN pip install --no-cache-dir gitpython
 EXPOSE 8888
