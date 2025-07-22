@@ -62,6 +62,7 @@ jobs:
       run: |
         docker login -u $HWC_USER -p $HWC_PWD $HWC_REG
         docker pull ubuntu:jammy
-        docker build -t $HWC_REG/$HWC_SPC/fastdeploy:latest -f fastdeploy.Dockerfile .
         docker tag ubuntu:jammy $HWC_REG/$HWC_SPC/ubuntu:jammy
+        docker push $HWC_REG/$HWC_SPC/ubuntu:jammy
+        docker build -t $HWC_REG/$HWC_SPC/fastdeploy:latest -f fastdeploy.Dockerfile .
         docker push $HWC_REG/$HWC_SPC/fastdeploy:latest
