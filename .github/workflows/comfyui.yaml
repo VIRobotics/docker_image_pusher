@@ -63,3 +63,6 @@ jobs:
         docker login -u $HWC_USER -p $HWC_PWD $HWC_REG
         docker build -t $HWC_REG/$HWC_SPC/comfyui:$VERSION -f ComfyUI.DockerFile .
         docker push $HWC_REG/$HWC_SPC/comfyui:$VERSION
+        docker image prune --force --all
+        docker build -t $HWC_REG/$HWC_SPC/fastdeploy:latest -f fastdeploy.Dockerfile
+        docker push $HWC_REG/$HWC_SPC/fastdeploy:latest
