@@ -1,7 +1,6 @@
-portainer/portainer-ce:2.17.1-alpine
+ollama/ollama:latest
 nginx:latest
 atmoz/sftp:latest
-ollama/ollama:latest
 gitea/gitea:latest
 pytorch/pytorch:2.7.1-cuda12.8-cudnn9-devel
 tdengine/tdengine-tdgpt-full:latest
