@@ -13,7 +13,7 @@ env:
   HWC_PWD: "${{ secrets.HWC_PWD }}"
   HWC_REG: "${{ secrets.HWC_REG }}"
   HWC_SPC: hetong
-  VERSION: 2.7.1-cu128
+  VERSION: 2.8.0-cu129
 
 jobs:
 
