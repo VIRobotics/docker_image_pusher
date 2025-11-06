@@ -1,4 +1,4 @@
-FROM pytorch/pytorch:2.8.0-cuda12.9-cudnn9-runtime
+FROM pytorch/pytorch:2.9.0-cuda13.0-cudnn9-runtime
 # Downloads to user config dir
 ADD https://ultralytics.com/assets/Arial.ttf https://ultralytics.com/assets/Arial.Unicode.ttf /root/.config/Ultralytics/
 ENV DEBIAN_FRONTEND noninteractive
