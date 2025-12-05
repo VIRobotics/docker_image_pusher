@@ -21,7 +21,8 @@ WORKDIR /usr/src/
 
 # Install pip packages
 #COPY requirements.txt .
-RUN python3 -m pip install --upgrade pip wheel
+RUN python3 -m pip install --upgrade pip wheel 
+RUN pip3 install --no-cache-dir uv
 
     # tensorflow tensorflowjs \
 # Set environment variables
@@ -29,11 +30,11 @@ ENV OMP_NUM_THREADS=12
 
 # Cleanup
 ENV DEBIAN_FRONTEND teletype
-RUN pip3 install --no-cache-dir jupyterlab ipywidgets jupyterlab-language-pack-zh-CN ipympl \
-jupyterlab-drawio lckr-jupyterlab-variableinspector  "python-lsp-server[all]" && jupyter lab --generate-config &&\
+RUN uv pip install --system --no-cache-dir jupyterlab ipywidgets jupyterlab-language-pack-zh-CN ipympl \
+jupyterlab-drawio lckr-jupyterlab-variableinspector  nbconvert "python-lsp-server[all]" && jupyter lab --generate-config &&\
 echo "c.ServerApp.terminado_settings = {'shell_command' : ['/bin/bash']}">> /root/.jupyter/jupyter_lab_config.py
 RUN  echo "c.ServerApp.root_dir = '/usr/src'">>/root/.jupyter/jupyter_lab_config.py && mkdir -p /usr/src
-RUN  pip install  --no-cache-dir streamlit transformers jupyterlab_markup  
+RUN uv pip install --system --no-cache-dir streamlit transformers jupyterlab_markup  
 RUN pip install --extra-index-url https://pypi.anaconda.org/rapidsai-wheels-nightly/simple --pre jupyterlab_nvdashboard
 RUN pip install --no-cache-dir git+https://github.com/VIRobotics/yiku-seg 
 RUN pip install --no-cache-dir onnxruntime_gpu  
