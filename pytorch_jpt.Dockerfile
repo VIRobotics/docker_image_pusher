@@ -40,4 +40,4 @@ RUN pip install --no-cache-dir onnxruntime_gpu
 RUN pip install  --no-cache-dir albumentations comet gsutil notebook \
     coremltools onnx onnx-simplifier ultralytics "openvino>=2024.0.0" 
 EXPOSE 8888
-CMD jupyter lab --ip='*' --NotebookApp.token='' --NotebookApp.password='' --no-browser  --allow-root
+CMD jupyter lab --ip='*' --ServerApp.token='' --ServerApp.password='' --no-browser  --allow-root
