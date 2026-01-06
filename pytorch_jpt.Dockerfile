@@ -34,11 +34,12 @@ RUN uv pip install --system --no-cache-dir jupyterlab ipywidgets jupyterlab-lang
 jupyterlab-drawio lckr-jupyterlab-variableinspector  nbconvert "python-lsp-server[all]" && jupyter lab --generate-config &&\
 echo "c.ServerApp.terminado_settings = {'shell_command' : ['/bin/bash']}">> /root/.jupyter/jupyter_lab_config.py
 RUN  echo "c.ServerApp.root_dir = '/usr/src'">>/root/.jupyter/jupyter_lab_config.py && mkdir -p /usr/src
-RUN uv pip install --system --no-cache-dir streamlit transformers jupyterlab_markup  
+RUN uv pip install --system --no-cache-dir streamlit transformers jupyterlab_markup  tensorboard 
+RUN uv pip install --system --no-cache-dir git+https://github.com/chesterli29/jupyterlab_tensorboard
 RUN pip install --extra-index-url https://pypi.anaconda.org/rapidsai-wheels-nightly/simple --pre jupyterlab_nvdashboard
 RUN pip install --no-cache-dir git+https://github.com/VIRobotics/yiku-seg 
 RUN pip install --no-cache-dir onnxruntime_gpu  
 RUN pip install  --no-cache-dir albumentations comet gsutil notebook \
-    coremltools onnx onnx-simplifier ultralytics "openvino>=2024.0.0" 
+    coremltools onnx onnx-simplifier ultralytics "openvino>=2024.0.0"  
 EXPOSE 8888
 CMD jupyter lab --ip='*' --IdentityProvider.token='' --ServerApp.password='' --no-browser  --allow-root
