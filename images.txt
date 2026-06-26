@@ -1,9 +1,6 @@
+lmsysorg/sglang:latest-cu130 --platform=linux/arm64
 ollama/ollama:latest
 nginx:latest
 atmoz/sftp:latest
 gitea/gitea:latest
 pytorch/pytorch:2.7.1-cuda12.8-cudnn9-devel
-tdengine/tdengine-tdgpt-full:latest
-tdengine/tdengine-tdgpt-full:3.3.6.0
-tdengine/tdengine:3.3.6.0
-grafana/grafana:11.0.11
