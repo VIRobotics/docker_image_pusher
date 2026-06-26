@@ -1,4 +1,4 @@
-lmsysorg/sglang:latest-cu130 --platform=linux/arm64
+scitrera/dgx-spark-sglang:0.5.12
 ollama/ollama:latest
 nginx:latest
 atmoz/sftp:latest
