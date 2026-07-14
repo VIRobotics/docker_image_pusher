@@ -1,3 +1,4 @@
+--platform=linux/arm64 nvidia/cuda:13.1.1-devel-ubuntu24.04
 --platform=linux/arm64 lmsysorg/sglang:v0.5.15-cu130
 --platform=linux/amd64 lmsysorg/sglang:v0.5.15-cu130
 vllm/vllm-openai:cu129-nightly-aarch64
