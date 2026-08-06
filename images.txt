@@ -1,6 +1,6 @@
 --platform=linux/arm64 nvidia/cuda:13.1.1-devel-ubuntu24.04
---platform=linux/arm64 lmsysorg/sglang:v0.5.15-cu130
---platform=linux/amd64 lmsysorg/sglang:v0.5.15-cu130
+--platform=linux/arm64 lmsysorg/sglang:v0.5.16-cu130
+--platform=linux/amd64 lmsysorg/sglang:v0.5.16-cu130
 vllm/vllm-openai:cu129-nightly-aarch64
 scitrera/dgx-spark-sglang:0.5.12
 ollama/ollama:latest
@@ -8,3 +8,4 @@ nginx:latest
 atmoz/sftp:latest
 gitea/gitea:latest
 pytorch/pytorch:2.7.1-cuda12.8-cudnn9-devel
+portainer/portainer-ce:lts
