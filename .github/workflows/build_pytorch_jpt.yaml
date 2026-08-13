@@ -49,13 +49,13 @@ jobs:
         echo "=============================================================================="
 
     - name: Checkout Code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: Docker Setup Buildx
-      uses: docker/setup-buildx-action@v3
+      uses: docker/setup-buildx-action@v4
 
     - name: Build and push image Aliyun
       run: |
-        docker login -u $ALIYUN_REGISTRY_USER -p $ALIYUN_REGISTRY_PASSWORD $ALIYUN_REGISTRY
+        echo "$ALIYUN_REGISTRY_PASSWORD" | docker login -u $ALIYUN_REGISTRY_USER --password-stdin $ALIYUN_REGISTRY
         docker build -t $ALIYUN_REGISTRY/$ALIYUN_NAME_SPACE/pytorch-jupyter:$VERSION -f pytorch_jpt.Dockerfile .
         docker push $ALIYUN_REGISTRY/$ALIYUN_NAME_SPACE/pytorch-jupyter:$VERSION
