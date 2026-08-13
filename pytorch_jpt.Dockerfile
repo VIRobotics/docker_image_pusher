@@ -21,8 +21,12 @@ WORKDIR /usr/src/
 
 # Install pip packages
 #COPY requirements.txt .
-RUN python3 -m pip install --upgrade pip wheel 
-RUN pip3 install --no-cache-dir uv
+# Install uv via standalone installer (system python is PEP 668 externally-managed on Ubuntu 24.04)
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+# Create default venv with access to system site-packages (torch, torchvision, etc.)
+RUN /root/.local/bin/uv venv --seed --system-site-packages /opt/venv
+ENV VIRTUAL_ENV=/opt/venv
+ENV PATH="/opt/venv/bin:/root/.local/bin:$PATH"
 
     # tensorflow tensorflowjs \
 # Set environment variables
@@ -30,11 +34,11 @@ ENV OMP_NUM_THREADS=12
 
 # Cleanup
 ENV DEBIAN_FRONTEND teletype
-RUN uv pip install --system --no-cache-dir jupyterlab ipywidgets jupyterlab-language-pack-zh-CN ipympl \
+RUN uv pip install --no-cache-dir jupyterlab ipywidgets jupyterlab-language-pack-zh-CN ipympl \
 jupyterlab-drawio lckr-jupyterlab-variableinspector  nbconvert "python-lsp-server[all]" && jupyter lab --generate-config &&\
 echo "c.ServerApp.terminado_settings = {'shell_command' : ['/bin/bash']}">> /root/.jupyter/jupyter_lab_config.py
 RUN  echo "c.ServerApp.root_dir = '/usr/src'">>/root/.jupyter/jupyter_lab_config.py && mkdir -p /usr/src
-RUN uv pip install --system --no-cache-dir streamlit transformers jupyterlab_markup  tensorboard 
+RUN uv pip install --no-cache-dir streamlit transformers jupyterlab_markup  tensorboard 
 RUN pip install --extra-index-url https://pypi.anaconda.org/rapidsai-wheels-nightly/simple --pre jupyterlab_nvdashboard
 RUN pip install --no-cache-dir git+https://github.com/VIRobotics/yiku-seg 
 RUN pip install --no-cache-dir onnxruntime_gpu  
