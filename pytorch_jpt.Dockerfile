@@ -1,11 +1,11 @@
-FROM pytorch/pytorch:2.9.1-cuda13.0-cudnn9-devel
+FROM pytorch/pytorch:2.13.0-cuda13.0-cudnn9-devel
 # Downloads to user config dir
 ADD https://ultralytics.com/assets/Arial.ttf https://ultralytics.com/assets/Arial.Unicode.ttf /root/.config/Ultralytics/
 ENV DEBIAN_FRONTEND noninteractive
 #RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
 RUN apt update
 RUN TZ=Etc/UTC apt install -y tzdata
-RUN apt install --no-install-recommends -y gcc git zip unzip curl htop libgl1-mesa-glx libglib2.0-0 libpython3-dev gnupg wget aria2 p7zip-full nano
+RUN apt install --no-install-recommends -y gcc git zip unzip curl htop libgl1 libglx-mesa0 libglib2.0-0 libpython3-dev gnupg wget aria2 p7zip-full nano
 # RUN alias python=python3
 
 # Security updates
