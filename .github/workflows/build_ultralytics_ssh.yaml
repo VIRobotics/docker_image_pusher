@@ -1,0 +1,61 @@
+name: build_ultralytics_ssh
+
+on:
+  workflow_dispatch:
+
+
+env:
+  HWC_USER: "${{ secrets.HWC_USER }}"
+  HWC_PWD: "${{ secrets.HWC_PWD }}"
+  HWC_REG: "${{ secrets.HWC_REG }}"
+  HWC_SPC: hetong
+  VERSION: 2.13.0-cu130
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Before freeing up disk space
+      run: |
+        echo "Before freeing up disk space"
+        echo "=============================================================================="
+        df -hT
+        echo "=============================================================================="
+
+    # 增加可用磁盘空间
+    - name: Maximize build space
+      uses: easimon/maximize-build-space@master
+      with:
+
+        root-reserve-mb: 2048
+        swap-size-mb: 128
+        remove-dotnet: 'true'
+        remove-haskell: 'true'
+        # 如果空间还是不够用，可以把以下开启，清理出更多空间
+        remove-android: 'true'
+        remove-codeql: 'true'
+        build-mount-path: '/var/lib/docker/'
+
+    - name: Restart docker
+      run: sudo service docker restart
+
+    - name: Free up disk space complete
+      run: |
+        echo "Free up disk space complete"
+        echo "=============================================================================="
+        df -hT
+        echo "=============================================================================="
+
+    - name: Checkout Code
+      uses: actions/checkout@v5
+
+    - name: Docker Setup Buildx
+      uses: docker/setup-buildx-action@v4
+
+    - name: Build and push image HuaweiCloud
+      run: |
+        echo "$HWC_PWD" | docker login -u $HWC_USER --password-stdin $HWC_REG
+        docker build -t $HWC_REG/$HWC_SPC/pytorch-ultralytics-ssh:$VERSION -f ultralytics_ssh.Dockerfile .
+        docker push $HWC_REG/$HWC_SPC/pytorch-ultralytics-ssh:$VERSION
